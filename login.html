@@ -37,7 +37,7 @@
     <script>
 
     if(localStorage.token){
-      $(window).attr('location', 'index.html')
+      $(window).attr('location', 'index3.html')
     }
 
     window.fbAsyncInit = function() {
@@ -95,7 +95,7 @@
            localStorage.id_fb = resp.data.id_fb
            localStorage.user_id = resp.data.user_id
            localStorage.picture = resp.data.picture.data.url
-           $(window).attr('location', 'index.html')
+           $(window).attr('location', 'index3.html')
          },
          error: function(error) {
            console.error('Failed send to server');
