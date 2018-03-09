@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  </head>
+  <body>
+    <p id='content'></p>
+    <p id='email'></p>
+    <button type="button" name="button" id="logout" onclick="logouts()">logout</button>
+
+    <script src="asset/vendor/jquery/jquery.min.js"></script>
+    <script>
+    //testing
+      if(localStorage.token===undefined){
+        $(window).attr('location', 'login.html')
+      }
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '607280472950629',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v2.12'
+        });
+
+        FB.AppEvents.logPageView();
+
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.12&appId=592784331071735&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+       function checkLoginState() {
+         FB.getLoginStatus(function(response) {
+           statusChangeCallback(response);
+         });
+       }
+
+       function statusChangeCallback(response){
+         if(response.status === 'connected'){
+           sendTokenToServer(localStorage.token);
+
+         }else{
+           location.reload();
+           console.log('not connected');
+         }
+       }
+
+       function sendTokenToServer(token) {
+         console.log(token);
+         $.ajax({
+           type: 'GET',
+           url: 'http://localhost:3000/testjwt/',
+           headers: {
+             token: token
+           },
+           success: function(resp) {
+             $('#content').html(resp.message)
+             $('#email').html(localStorage.getItem('email'))
+             console.log(resp);
+           },
+           error: function(error) {
+             console.error('Failed send to server');
+             console.log(error);
+           }
+         })
+       };
+
+       function logouts(){
+         FB.logout(function(response) {
+           localStorage.removeItem("token")
+           localStorage.removeItem("email")
+           localStorage.removeItem("id_fb")
+           localStorage.removeItem("user_id")
+           localStorage.removeItem("picture")
+           statusChangeCallback(response)
+         });
+       }
+    </script>
+  </body>
+</html>
