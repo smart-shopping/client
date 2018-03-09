@@ -3,8 +3,65 @@
   <head>
     <meta charset="utf-8">
     <title>home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    </script>
+    <script type="text/javascript" src="asset/js/jquery.js"></script>
+    <script type="text/javascript" src="asset/js/foundation.min.js"></script>
+    <script type="text/javascript" src="asset/js/amplitude.js"></script>
+    <script type="text/javascript" src="asset/js/functions.js"></script>
   </head>
   <body>
+    <section class="hero is-light is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <strong>Welcome to Moodetect</strong>
+          </h1>
+          <h2 class="subtitle">
+            Give you what you trully need through your emotion
+          </h2>
+        </div>
+      </div>
+    </section>
+    <div class="columns">
+      <div class="column">
+        <video id="player" width="320" height="249" controls autoplay></video>
+        <button id="capture">Capture</button>
+        <canvas id="canvas" width=320 height=240></canvas>
+      </div>
+      <div class="column">
+        Put Your Photo: <input type="text" name="inputImage" id="inputImage" value="" />
+        <button onclick="processImage()">Analyze</button>
+        <div class="container" id="wrapper">
+          <div id="imageDiv" style="width:420px; display:table-cell;">
+            Your image:
+            <br><br>
+            <img id="sourceImage" width="400" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const player = document.getElementById('player');
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+      const captureButton = document.getElementById('capture');
+
+      const constraints = {
+        video: true,
+      };
+    </script>
+
+
+
 
   </body>
+
 </html>
