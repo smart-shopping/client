@@ -1,34 +1,3 @@
-<script>
-  const player = document.getElementById('player');
-  const canvas = document.getElementById('canvas');
-  const context = canvas.getContext('2d');
-  const captureButton = document.getElementById('capture');
-
-  const constraints = {
-    video: true,
-  };
-
-  captureButton.addEventListener('click', () => {
-    context.drawImage(player, 0, 0, canvas.width, canvas.height);
-    console.log('ini contexttttt', canvas)
-    function convertCanvasToImage(canvas) {
-      var image = new Image();
-      image.src = canvas.toDataURL("image/png");
-      return image;
-    }
-    const image = convertCanvasToImage(canvas)
-    // document.write(image)
-    // Stop all video streams.
-    player.srcObject.getVideoTracks().forEach(track => track.stop());
-  });
-
-  navigator.mediaDevices.getUserMedia(constraints)
-    .then((stream) => {
-      // Attach the video stream to the video element and autoplay.
-      player.srcObject = stream;
-    });
-</script>
-<script type="text/javascript">
 function processImage() {
 
   var subscriptionKey = "5a1d4c8879b142a7ae0a6ee38ae21540";
@@ -67,7 +36,19 @@ function processImage() {
     // const result = $("#responseTextArea").val(JSON.stringify(data, null, 2));
     // const result = document.getElementById("responseTextArea").value()
     const result = data[0]
-    console.log([result.faceAttributes.emotion],[result.faceAttributes.gender])
+    console.log(result)
+    $.ajax({
+      url       : "http://localhost:3000/api/music",
+      type      : "post",
+      dataType  : "json",
+      data      : result,
+      success   : (respond) => {
+        console.log(respond);
+      },
+      error     : (err) => {
+        console.log(err);
+      }
+    })
   })
 
   .fail(function(jqXHR, textStatus, errorThrown) {
@@ -78,4 +59,3 @@ function processImage() {
     alert(errorString);
   });
 };
-</script>

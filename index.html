@@ -10,11 +10,10 @@
     src="https://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    </script>
     <script type="text/javascript" src="asset/js/jquery.js"></script>
     <script type="text/javascript" src="asset/js/foundation.min.js"></script>
     <script type="text/javascript" src="asset/js/amplitude.js"></script>
-    <script type="text/javascript" src="asset/js/functions.js"></script>
+    <script type="text/javascript" src="asset/js/photo-identify.js"></script>
   </head>
   <body>
     <section class="hero is-light is-bold">
@@ -31,36 +30,286 @@
     </section>
     <div class="columns">
       <div class="column">
-        <video id="player" width="320" height="249" controls autoplay></video>
-        <button id="capture">Capture</button>
-        <canvas id="canvas" width=320 height=240></canvas>
+        <div class="box">
+      <article class="media">
+        <div class="media-left">
+          <figure class="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>People's name</strong><br>
+              people's bio
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
       </div>
       <div class="column">
+        <video id="vid" width="320" height="240" controls></video><br>
+        <button id="capture">Capture</button><br>
+        <canvas id="canvas" width=320 height=240></canvas>
+        <script src="asset/js/video-snap.js" charset="utf-8"></script>
+        <h1>OR</h1> <br>
         Put Your Photo: <input type="text" name="inputImage" id="inputImage" value="" />
         <button onclick="processImage()">Analyze</button>
-        <div class="container" id="wrapper">
           <div id="imageDiv" style="width:420px; display:table-cell;">
-            Your image:
+            Source image:
             <br><br>
             <img id="sourceImage" width="400" />
+        </div>
+      </div>
+      <div class="column">
+        <div id="flat-black-player-container">
+          <div id="list-screen" class="slide-in-top">
+
+            <div id="list-screen-header" class="hide-playlist">
+              <img id="up-arrow" src="asset/img/up.svg" /> Hide Playlist
+            </div>
+
+            <div id="list">
+              <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="0">
+                <span class="song-number-now-playing">
+                      <span class="number">1</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Risin' High (feat Raashan Ahmad)</span>
+                  <span class="song-artist-album">Ancient Astronauts - We Are to Answer</span>
+                </div>
+
+                <span class="song-duration">
+                      3:30
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="1">
+                    <span class="song-number-now-playing">
+                      <span class="number">2</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">The Gun</span>
+                  <span class="song-artist-album">Lorn - Ask The Dust</span>
+                </div>
+
+                <span class="song-duration">
+                      3:16
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="2">
+                    <span class="song-number-now-playing">
+                      <span class="number">3</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Anvil</span>
+                  <span class="song-artist-album">Lorn - Anvil</span>
+                </div>
+
+                <span class="song-duration">
+                      3:32
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="3">
+                    <span class="song-number-now-playing">
+                      <span class="number">4</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">I Came Running</span>
+                  <span class="song-artist-album">Ancient Astronauts - We Are to Answer</span>
+                </div>
+
+                <span class="song-duration">
+                      3:30
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="4">
+                    <span class="song-number-now-playing">
+                      <span class="number">5</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">First Snow</span>
+                  <span class="song-artist-album">Emancipator - Soon It Will Be Cold Enough</span>
+                </div>
+
+                <span class="song-duration">
+                      5:12
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="5">
+                    <span class="song-number-now-playing">
+                      <span class="number">6</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Terrain</span>
+                  <span class="song-artist-album">pgs.lost - Key</span>
+                </div>
+
+                <span class="song-duration">
+                      5:29
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="6">
+                    <span class="song-number-now-playing">
+                      <span class="number">7</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Vorel</span>
+                  <span class="song-artist-album">Russian Circles - Guidance</span>
+                </div>
+
+                <span class="song-duration">
+                      5:29
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="7">
+                    <span class="song-number-now-playing">
+                      <span class="number">8</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Intro / Sweet Glory</span>
+                  <span class="song-artist-album">Jimkata - Die Digital</span>
+                </div>
+
+                <span class="song-duration">
+                      2:39
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="8">
+                    <span class="song-number-now-playing">
+                      <span class="number">9</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Offcut #6</span>
+                  <span class="song-artist-album">Little People - We Are But Hunks of Wood Remixes</span>
+                </div>
+
+                <span class="song-duration">
+                      1:00
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="9">
+                    <span class="song-number-now-playing">
+                      <span class="number">10</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Dusk To Dawn</span>
+                  <span class="song-artist-album">Emancipator - Dusk To Dawn</span>
+                </div>
+
+                <span class="song-duration">
+                      5:25
+                    <span>
+                  </div>
+                  <div class="song amplitude-song-container amplitude-play-pause" amplitude-song-index="10">
+                    <span class="song-number-now-playing">
+                      <span class="number">11</span>
+                <img class="now-playing" src="asset/img/now-playing.svg" />
+                </span>
+
+                <div class="song-meta-container">
+                  <span class="song-name">Anthem</span>
+                  <span class="song-artist-album">Emancipator - Soon It Will Be Cold Enough</span>
+                </div>
+
+                <span class="song-duration">
+                      5:40
+                    <span>
+                  </div>
+                </div>
+
+                <div id="list-screen-footer">
+                  <div id="list-screen-meta-container">
+                    <span amplitude-song-info="name" amplitude-main-song-info="true" class="song-name"></span>
+
+                <div class="song-artist-album">
+                  <span amplitude-song-info="artist" amplitude-main-song-info="true"></span>
+                </div>
+              </div>
+              <div class="list-controls">
+                <div class="list-previous amplitude-prev"></div>
+                <div class="list-play-pause amplitude-play-pause" amplitude-main-play-pause="true"></div>
+                <div class="list-next amplitude-next"></div>
+              </div>
+            </div>
+          </div>
+          <div id="player-screen">
+            <div class="player-header down-header">
+              <img id="down" src="asset/img/down.svg" /> Show Playlist
+            </div>
+            <div id="player-top">
+              <img amplitude-song-info="cover_art_url" amplitude-main-song-info="true" />
+            </div>
+            <div id="player-progress-bar-container">
+              <progress id="song-played-progress" class="amplitude-song-played-progress" amplitude-main-song-played-progress="true"></progress>
+              <progress id="song-buffered-progress" class="amplitude-buffered-progress" value="0"></progress>
+            </div>
+            <div id="player-middle">
+              <div id="time-container">
+                <span class="amplitude-current-time time-container" amplitude-main-current-time="true"></span>
+                <span class="amplitude-duration-time time-container" amplitude-main-duration-time="true"></span>
+              </div>
+              <div id="meta-container">
+                <span amplitude-song-info="name" amplitude-main-song-info="true" class="song-name"></span>
+
+                <div class="song-artist-album">
+                  <span amplitude-song-info="artist" amplitude-main-song-info="true"></span>
+                </div>
+              </div>
+            </div>
+            <div id="player-bottom">
+              <div id="control-container">
+
+                <div id="shuffle-container">
+                  <div class="amplitude-shuffle amplitude-shuffle-off" id="shuffle"></div>
+                </div>
+
+                <div id="prev-container">
+                  <div class="amplitude-prev" id="previous"></div>
+                </div>
+
+                <div id="play-pause-container">
+                  <div class="amplitude-play-pause" amplitude-main-play-pause="true" id="play-pause"></div>
+                </div>
+
+                <div id="next-container">
+                  <div class="amplitude-next" id="next"></div>
+                </div>
+
+                <div id="repeat-container">
+                  <div class="amplitude-repeat" id="repeat"></div>
+                </div>
+
+              </div>
+
+              <div id="volume-container">
+                <img src="asset/img/volume.svg" /><input type="range" class="amplitude-volume-slider" step=".1" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <script>
-      const player = document.getElementById('player');
-      const canvas = document.getElementById('canvas');
-      const context = canvas.getContext('2d');
-      const captureButton = document.getElementById('capture');
-
-      const constraints = {
-        video: true,
-      };
-    </script>
-
-
-
 
   </body>
 
