@@ -37,7 +37,7 @@
     <script>
 
     if(localStorage.token){
-      $(window).attr('location', 'index3.html')
+      $(window).attr('location', 'home.html')
     }
 
     window.fbAsyncInit = function() {
@@ -72,6 +72,7 @@
      }
 
      function statusChangeCallback(response){
+       console.log(response);
        if(response.status === 'connected'){
          sendTokenToServer(response.authResponse.accessToken);
 
@@ -86,16 +87,14 @@
        $.ajax({
          type: 'POST',
          url: 'http://localhost:3000/signinfb/',
+         dataType : "json",
          data: {
            data: token
          },
          success: function(resp) {
-           localStorage.token = resp.data.token
-           localStorage.email = resp.data.email
-           localStorage.id_fb = resp.data.id_fb
-           localStorage.user_id = resp.data.user_id
-           localStorage.picture = resp.data.picture.data.url
-           $(window).attr('location', 'index3.html')
+           console.log(resp,"ini respon <<<<<<<<<<<");
+
+           $(window).attr('location','home.html')
          },
          error: function(error) {
            console.error('Failed send to server');
